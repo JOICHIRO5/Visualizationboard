@@ -2,6 +2,20 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+tracking_id = st.secrets["GA_TRACKING_ID"]
+
+GA_JS = f"""
+<script async src="https://www.googletagmanager.com/gtag/js?id={tracking_id}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{tracking_id}');
+</script>
+"""
+st.markdown(GA_JS, unsafe_allow_html=True)
+
+
 st.set_page_config(page_title="ダッシュボードアプリ", layout="wide")
 st.title("Visualizationボード")
 
